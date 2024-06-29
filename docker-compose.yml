@@ -5,7 +5,6 @@ services:
     image: rebalancer
     networks:
       - traefik-public
-    command: "uvicorn main:app"
     deploy:
       labels:
         - traefik.enable=true

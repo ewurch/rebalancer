@@ -1,0 +1,72 @@
+{% include 'partials/progress_bar/25.html' %}
+<form action="/no-portfolio-form" method="post">
+<div class="form-group">
+    <p class="lead">How much are you willing to invest in Crypto</p>
+    <label>Amount (in USD):</label>
+    <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <input name="amount" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <span class="input-group-text">.00</span>
+    </div>
+    <label>Select the cryptocurrencies you want to invest:</label>
+    {% for key, value in crypto_portfolio %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="cryptoBitcoin" name="{{ key }}">
+            <label class="form-check-label" for="crypto{{ key }}">
+                <img src="/static/crypto-icons/color/{{ key }}.png" alt="{{ value }}" width="24" height="24">
+                {{ value }}
+            </label>
+        </div>
+    {% endfor %}
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Ethereum" id="cryptoEthereum" name="cryptocurrencies">
+        <label class="form-check-label" for="cryptoEthereum">
+            <img src="/static/crypto-icons/color/eth.png" alt="Ethereum" width="24" height="24">
+            Ethereum (ETH)
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Ripple" id="cryptoRipple" name="cryptocurrencies">
+        <label class="form-check-label" for="cryptoRipple">
+            <img src="/static/crypto-icons/color/xrp.png" alt="Ripple" width="24" height="24">
+            Ripple (XRP)
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Litecoin" id="cryptoLitecoin" name="cryptocurrencies">
+        <label class="form-check-label" for="cryptoLitecoin">
+            <img src="/static/crypto-icons/color/ltc.png" alt="Litecoin" width="24" height="24">
+            Litecoin (LTC)
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Cardano" id="cryptoCardano" name="cryptocurrencies">
+        <label class="form-check-label" for="cryptoCardano">
+            <img src="/static/crypto-icons/color/ada.png" alt="Cardano" width="24" height="24">
+            Cardano (ADA)
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Polkadot" id="cryptoPolkadot" name="cryptocurrencies">
+        <label class="form-check-label" for="cryptoPolkadot">
+            <img src="/static/crypto-icons/color/dot.png" alt="Polkadot" width="24" height="24">
+            Polkadot (DOT)
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="USDT" id="cryptoUSDT" name="cryptocurrencies">
+        <label class="form-check-label" for="cryptoUSDT">
+            <img src="/static/crypto-icons/color/usdt.png" alt="USDT" width="24" height="24">
+            Tether (USDT)
+        </label>
+    </div>
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="USDC" id="cryptoUSDC" name="cryptocurrencies">
+        <label class="form-check-label" for="cryptoUSDC">
+            <img src="/static/crypto-icons/color/usdc.png" alt="USDC" width="24" height="24">
+            USD Coin (USDC)
+        </label>
+    </div>
+</div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

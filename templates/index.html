@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Rebalance App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for Web3 Style -->
+    <link href="/static/css/styles.css" rel="stylesheet">
+    <!-- Hyperscript -->
+    <script src="https://unpkg.com/hyperscript.org"></script>
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org"></script>
+
+</head>
+
+<body>
+    <div class="d-flex justify-content-center align-items-center m-5">
+        <div class="card p-4 fade-in">
+            <h1 class="text-center display-3">Crypto Rebalance App</h1>
+            <hr>
+            <div id="form-div">
+
+                {% include 'partials/progress_bar/0.html' %}
+                
+                <p class="lead">Do you already have a crypto portfolio?</p>
+                <button type="button" class="btn btn-primary smooth" 
+                    hx-target="#form-div" 
+                    hx-get="/no-portfolio-form">
+                    No
+                </button>
+                <button type="button" class="btn btn-primary" _="on click go to #step2YesPortfolio">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

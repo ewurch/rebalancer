@@ -1,0 +1,22 @@
+<div id="step2YesPortfolio" class="d-none">
+  <div id="portfolioContainer">
+    <div class="form-group">
+      <label>Add a crypto to your portfolio:</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="crypto_name[]" placeholder="Crypto name" />
+        <input type="number" class="form-control" name="crypto_amount[]" placeholder="Amount in USD" />
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-secondary" _="on click add .crypto-entry to #portfolioContainer before end">Add Another Crypto</button>
+  <div class="form-group mt-3">
+    <label for="strategy">What is your strategy?</label>
+    <select class="form-control" name="strategy" id="strategy">
+      <option value="long_term_asset_preservation">Long term asset preservation</option>
+      <option value="short_term_risky_gains">Short term risky gains</option>
+      <option value="short_term_safe_gains">Short term safe gains</option>
+      <!-- Add more strategies as needed -->
+    </select>
+  </div>
+  <button type="submit" class="btn btn-success">Submit</button>
+</div>

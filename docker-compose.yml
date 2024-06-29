@@ -3,10 +3,9 @@ version: '3.8'
 services:
   app:
     image: rebalancer
-    env_file:
-      - .env
     networks:
       - traefik-public
+    command: "uvicorn main:app"
     deploy:
       labels:
         - traefik.enable=true

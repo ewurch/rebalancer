@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    image: rebalancer
+    env_file:
+      - .env
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        # HTTPS Router
+        - traefik.http.routers.rebalancer-https.rule=Host(`digitalparka.com`)
+        - traefik.http.routers.rebalancer-https.entrypoints=https
+        - traefik.http.routers.rebalancer-https.tls=true
+        - traefik.http.routers.rebalancer-https.tls.certresolver=le
+        - traefik.http.services.rebalancer-https.loadbalancer.server.port=8000
+        # HTTP Router
+        - traefik.http.routers.rebalancer-http.rule=Host(`digitalparka.com`)
+        - traefik.http.routers.rebalancer-http.entrypoints=http
+        - traefik.http.routers.rebalancer-http.middlewares=https-redirect
+
+
+networks:
+  traefik-public:
+    external: true

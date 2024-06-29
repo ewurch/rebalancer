@@ -46,18 +46,24 @@ async def rebalance(portfolio: str = Form(...), objectives: str = Form(...)):
 
 
 @app.get("/no-portfolio-form")
-def no_portfolio_form():
+def no_portfolio_form(request: Request):
     return templates.TemplateResponse(
-        "partials/no_portfolio_form.html", {"request": {"crypto_portfolio": CRYPTO_PORTFOLIO}}
+        "partials/no_portfolio_form.html", 
+        {"request": request, "crypto_portfolio": CRYPTO_PORTFOLIO}
     )
 
 @app.post("/no-portfolio-form")
-def calculate_no_portfolio_form(
+async def calculate_no_portfolio_form(
+        request: Request,
         amount: float = Form(...),
-        cryptocurrencies: list[str] | None = Form(...),
     ):
-    print(cryptocurrencies, amount)
-    return templates.TemplateResponse("partials/no_portfolio_form.html", {"request": {}})
+    form_data = await request.form()
+    print(form_data)
+    print(amount)
+    return templates.TemplateResponse(
+        "partials/no_portfolio_form.html",
+        {"request": request, "crypto_portfolio": CRYPTO_PORTFOLIO}
+    )
 
 async def get_rebalance_strategy(portfolio, objectives):
     # Logic to interact with ChatGPT

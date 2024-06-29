@@ -1,0 +1,33 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: rebalancer
+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: Pull update, build and deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.LINODE_HOST }}
+        username: ${{ secrets.LINODE_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          docker stack rm ${{ env.IMAGE_NAME }}
+          cd ~/${{ github.event.repository.name }} && echo "Moving to $PWD"
+
+          git pull origin main && echo "Pulled latest changes"
+          docker build -t ${{ env.IMAGE_NAME }} . && echo "Built image"
+          docker stack deploy  -c docker-compose.yml ${{ env.IMAGE_NAME }} && echo "Deployed stack"
